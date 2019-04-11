@@ -4,7 +4,7 @@
   "description": "Convert markdown files to pdf and send them via http.",
   "main": "index.js",
   "scripts": {
-    "server": "node index.js",
+    "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Evan Buss",
