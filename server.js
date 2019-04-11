@@ -1,22 +1,29 @@
 // SCI ID: 050
 // Name: index
-// Version: 1.0
+// Version: 1.1
 
 const express = require('express');
 const markdownpdf = require('markdown-pdf');
 const fs = require('fs');
 const app = express();
 
-app.get('/', (req, res) => {
-  // Read from markdown file and create pdf file
-  const converter = fs.createReadStream('test.md')
-    .pipe(markdownpdf())
-    .pipe(fs.createWriteStream('test.pdf'));
+app.use(express.json());
 
-  // Send the file as a response once closed.
-  converter.on('close', () => {
-    res.download('test.pdf');
+app.post('/', (req, res) => {
+
+  const fileName = req.body.title + ".pdf";
+  markdownpdf().from.string(req.body.content).to(fileName, () => {
+    res.download(fileName, (err) => {
+      if (err) {
+        console.error("File transfer failure.");
+      } else {
+        fs.unlink(fileName, (err) => {
+          if (err) console.log(err);
+        })
+      }
+    });
   })
+
 })
 
 app.listen(3000, () => console.log("Server Running"));

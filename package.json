@@ -4,7 +4,7 @@
   "description": "Convert markdown files to pdf and send them via http.",
   "main": "index.js",
   "scripts": {
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Evan Buss",
@@ -12,5 +12,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "markdown-pdf": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
   }
 }
