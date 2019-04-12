@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="downloadPDF()">Click Me</button>
+  <a id="hiddenLink" style="display: none" href=""></a>
+</body>
+
+<script>
+
+  const body = {
+    title: "test",
+    content: "# Hello world"
+  }
+
+  function downloadPDF() {
+    fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }).then(response => {
+      return response.blob();
+    }).then(blob => {
+      const href = window.URL.createObjectURL(blob);
+      const a = document.getElementById('hiddenLink');
+      a.download = 'Lebenslauf.pdf';
+      a.href = href;
+      a.click();
+      a.href = '';
+    });
+  }
+</script>
+
+</html>
