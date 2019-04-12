@@ -17,10 +17,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/', (req, res) => {
+app.post('/pdf', (req, res) => {
 
   const fileName = req.body.title + ".pdf";
-  markdownpdf({ cssPath: 'githubStyle.css' }).from.string(req.body.content).to(fileName, () => {
+  markdownpdf().from.string(req.body.content).to(fileName, () => {
     res.download(fileName, (err) => {
       if (err) {
         console.error("File transfer failure.");
@@ -35,4 +35,4 @@ app.post('/', (req, res) => {
   })
 })
 
-app.listen(8080, () => console.log("Server Running"));
+app.listen(3000, () => console.log("Server Running"));

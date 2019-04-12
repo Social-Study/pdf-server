@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install packages
+RUN npm install phantomjs-prebuilt
 RUN npm ci --only=production
 
 COPY . .
