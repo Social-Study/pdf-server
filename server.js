@@ -35,4 +35,4 @@ app.post('/pdf', (req, res) => {
   })
 })
 
-app.listen(3000, () => console.log("Server Running"));
+app.listen(process.env.PORT || 3000, () => console.log("Server Running"));
