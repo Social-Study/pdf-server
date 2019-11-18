@@ -4,9 +4,12 @@
 
 const express = require('express');
 const markdownpdf = require('markdown-pdf');
+const compression = require("compression");
 const fs = require('fs');
 const app = express();
 
+// GZIP Compress All Responses
+app.use(compression())
 // Request body is converted to json format
 app.use(express.json());
 

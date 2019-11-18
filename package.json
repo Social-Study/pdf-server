@@ -11,6 +11,7 @@
   "author": "Evan Buss",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.16.4",
     "markdown-pdf": "^9.0.0"
   },
